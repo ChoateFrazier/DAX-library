@@ -1,0 +1,8 @@
+Var UniqueIDs = [Unique ID]
+RETURN
+
+CALCULATE(
+    COUNTROWS('table1'),
+    all('table1'),
+    'table1'[Unique ID] = UniqueIDs
+)
