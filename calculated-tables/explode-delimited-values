@@ -1,0 +1,56 @@
+CalcExplodedTable =
+VAR Sep = ","
+VAR MaxDelimitedValueCount =
+    MAXX (
+        'table1',
+        VAR s = 'table1'[delimitedfield1]
+        VAR sClean = TRIM ( s )
+        RETURN
+            IF (
+                LEN ( sClean ) = 0,
+                0,
+                1
+                    + DIVIDE (
+                        LEN ( sClean ) - LEN ( SUBSTITUTE ( sClean, Sep, "" ) ),
+                        LEN ( Sep ),
+                        0
+                    )
+            )
+    )
+VAR Indexes =
+    GENERATESERIES ( 1, MaxDelimitedValueCount, 1 )
+RETURN
+    SELECTCOLUMNS (
+        FILTER (
+            ADDCOLUMNS (
+                CROSSJOIN ( 'table1', Indexes ),
+                "DelimitedValueCount",
+                    VAR s = 'table1'[delimitedfield1]
+                    VAR sClean = TRIM ( s )
+                    RETURN
+                        IF (
+                            LEN ( sClean ) = 0,
+                            0,
+                            1
+                                + DIVIDE (
+                                    LEN ( sClean ) - LEN ( SUBSTITUTE ( sClean, Sep, "" ) ),
+                                    LEN ( Sep ),
+                                    0
+                                )
+                        ),
+                "Delimited Value",
+                    VAR s = 'table1'[delimitedfield1]
+                    VAR sClean = TRIM ( s )
+                    VAR path =
+                        IF ( LEN ( sClean ) = 0, BLANK (), SUBSTITUTE ( sClean, Sep, "|" ) )
+                    RETURN
+                        IF ( ISBLANK ( path ), BLANK (), TRIM ( PATHITEM ( path, [Value], TEXT ) ) )
+            ),
+            [Value] <= [DelimitedValueCount]
+                && NOT ISBLANK ( [Delimited Value] )
+                && LEN ( [Delimited Value] ) > 0
+        ),
+        "Id", 'table1'[Id],
+        "Name", 'table1'[Name],
+        "Delimited Value", [Delimited Value]
+    )
