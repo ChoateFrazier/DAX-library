@@ -25,7 +25,7 @@ Many of these entries assume:
 ## Naming Conventions
 
 Measures
-Use descriptive, business-friendly names:
+Uses descriptive, business-friendly names:
    - Total Sales
    - Sales YTD
    - Sales YoY %
@@ -40,6 +40,7 @@ Identify purpose:
   - Rank Bands
   - Date
 
-Snippets
-Stored with _ prefix (optional) to indicate reusable building blocks.
+## License
+
+This project is open source — use it freely in your BI work, tools, and models.
 
