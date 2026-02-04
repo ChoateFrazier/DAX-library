@@ -1,0 +1,31 @@
+let
+    Source = Contacts,  // <-- this is the name of the table in your CRM database...edit accordingly
+
+    AddCountryKey = Table.AddColumn(Source, "CountryKey", each step1-normalize-country([Country]), type text),
+
+    MergeMap = Table.NestedJoin(
+        AddCountryKey,
+        {"CountryKey"},
+        step2-country-mapping,
+        {"CountryKey"},
+        "CountryMap",
+        JoinKind.LeftOuter
+    ),
+
+    ExpandMap = Table.ExpandTableColumn(
+        MergeMap,
+        "CountryMap",
+        {"Country_Standard","ISO2","ISO3"},
+        {"Country_Standard","Country_ISO2","Country_ISO3"}
+    ),
+
+    AddFinal = Table.AddColumn(
+        ExpandMap,
+        "Country_Final",
+        each if [Country_Standard] <> null then [Country_Standard] else [Country],
+        type text
+    ),
+
+    Cleanup = Table.RemoveColumns(AddFinal, {"CountryKey"})
+in
+    Cleanup
