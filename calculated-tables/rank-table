@@ -1,0 +1,11 @@
+Calc Rank Table = 
+ ADDCOLUMNS(
+    SUMMARIZE(
+        //TABLE NAME,
+        //UNIQUE ID COLUMN IN TABLE,
+        table1[uniqueID],
+        "Date", MAX (datetable[datefield])
+    ),
+    "Sum of Some Value",
+        CALCULATE(
+            SUM(table1[revenue1])))
