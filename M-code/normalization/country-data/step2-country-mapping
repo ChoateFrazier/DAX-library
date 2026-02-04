@@ -1,0 +1,73 @@
+let
+    // Add/edit rows here. Country_Raw can include English/French/Spanish/German spellings and common abbreviations.
+    Source = Table.FromRecords({
+        // United States
+        [Country_Raw="United States", Country_Standard="United States", ISO2="US", ISO3="USA"],
+        [Country_Raw="United States of America", Country_Standard="United States", ISO2="US", ISO3="USA"],
+        [Country_Raw="USA", Country_Standard="United States", ISO2="US", ISO3="USA"],
+        [Country_Raw="U.S.", Country_Standard="United States", ISO2="US", ISO3="USA"],
+        [Country_Raw="US", Country_Standard="United States", ISO2="US", ISO3="USA"],
+        [Country_Raw="États-Unis", Country_Standard="United States", ISO2="US", ISO3="USA"],
+        [Country_Raw="Etats-Unis", Country_Standard="United States", ISO2="US", ISO3="USA"],
+        [Country_Raw="Estados Unidos", Country_Standard="United States", ISO2="US", ISO3="USA"],
+        [Country_Raw="Vereinigte Staaten", Country_Standard="United States", ISO2="US", ISO3="USA"],
+        [Country_Raw="Vereinigte Staaten von Amerika", Country_Standard="United States", ISO2="US", ISO3="USA"],
+
+        // Canada
+        [Country_Raw="Canada", Country_Standard="Canada", ISO2="CA", ISO3="CAN"],
+
+        // Mexico
+        [Country_Raw="Mexico", Country_Standard="Mexico", ISO2="MX", ISO3="MEX"],
+        [Country_Raw="México", Country_Standard="Mexico", ISO2="MX", ISO3="MEX"],
+        [Country_Raw="Mexique", Country_Standard="Mexico", ISO2="MX", ISO3="MEX"],
+
+        // United Kingdom
+        [Country_Raw="United Kingdom", Country_Standard="United Kingdom", ISO2="GB", ISO3="GBR"],
+        [Country_Raw="UK", Country_Standard="United Kingdom", ISO2="GB", ISO3="GBR"],
+        [Country_Raw="U.K.", Country_Standard="United Kingdom", ISO2="GB", ISO3="GBR"],
+        [Country_Raw="Great Britain", Country_Standard="United Kingdom", ISO2="GB", ISO3="GBR"],
+        [Country_Raw="Britain", Country_Standard="United Kingdom", ISO2="GB", ISO3="GBR"],
+        [Country_Raw="Royaume-Uni", Country_Standard="United Kingdom", ISO2="GB", ISO3="GBR"],
+        [Country_Raw="Reino Unido", Country_Standard="United Kingdom", ISO2="GB", ISO3="GBR"],
+        [Country_Raw="Vereinigtes Königreich", Country_Standard="United Kingdom", ISO2="GB", ISO3="GBR"],
+
+        // Germany
+        [Country_Raw="Germany", Country_Standard="Germany", ISO2="DE", ISO3="DEU"],
+        [Country_Raw="Deutschland", Country_Standard="Germany", ISO2="DE", ISO3="DEU"],
+        [Country_Raw="Allemagne", Country_Standard="Germany", ISO2="DE", ISO3="DEU"],
+        [Country_Raw="Alemania", Country_Standard="Germany", ISO2="DE", ISO3="DEU"],
+
+        // France
+        [Country_Raw="France", Country_Standard="France", ISO2="FR", ISO3="FRA"],
+
+        // Spain
+        [Country_Raw="Spain", Country_Standard="Spain", ISO2="ES", ISO3="ESP"],
+        [Country_Raw="España", Country_Standard="Spain", ISO2="ES", ISO3="ESP"],
+        [Country_Raw="Espana", Country_Standard="Spain", ISO2="ES", ISO3="ESP"],
+        [Country_Raw="Espagne", Country_Standard="Spain", ISO2="ES", ISO3="ESP"],
+        [Country_Raw="Spanien", Country_Standard="Spain", ISO2="ES", ISO3="ESP"],
+
+        // Switzerland
+        [Country_Raw="Switzerland", Country_Standard="Switzerland", ISO2="CH", ISO3="CHE"],
+        [Country_Raw="Suisse", Country_Standard="Switzerland", ISO2="CH", ISO3="CHE"],
+        [Country_Raw="Suiza", Country_Standard="Switzerland", ISO2="CH", ISO3="CHE"],
+        [Country_Raw="Schweiz", Country_Standard="Switzerland", ISO2="CH", ISO3="CHE"],
+
+        // Austria
+        [Country_Raw="Austria", Country_Standard="Austria", ISO2="AT", ISO3="AUT"],
+        [Country_Raw="Autriche", Country_Standard="Austria", ISO2="AT", ISO3="AUT"],
+        [Country_Raw="Austria", Country_Standard="Austria", ISO2="AT", ISO3="AUT"],
+        [Country_Raw="Österreich", Country_Standard="Austria", ISO2="AT", ISO3="AUT"],
+        [Country_Raw="Oesterreich", Country_Standard="Austria", ISO2="AT", ISO3="AUT"],
+
+        // Belgium
+        [Country_Raw="Belgium", Country_Standard="Belgium", ISO2="BE", ISO3="BEL"],
+        [Country_Raw="Belgique", Country_Standard="Belgium", ISO2="BE", ISO3="BEL"],
+        [Country_Raw="Bélgica", Country_Standard="Belgium", ISO2="BE", ISO3="BEL"],
+        [Country_Raw="Belgien", Country_Standard="Belgium", ISO2="BE", ISO3="BEL"]
+    }),
+    AddKey = Table.AddColumn(Source, "CountryKey", each fnNormalizeCountry([Country_Raw]), type text),
+    // Keep only what we need for merging
+    Final = Table.SelectColumns(AddKey, {"CountryKey","Country_Standard","ISO2","ISO3"})
+in
+    Final
