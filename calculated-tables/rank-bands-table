@@ -1,0 +1,30 @@
+Client Rank Bands =
+VAR RankedClients =
+    ADDCOLUMNS (
+        'Top 250 Clients',
+        "__Rank",
+            RANKX (
+                ALL ( 'Top 250 Clients' ),
+                'Top 250 Clients'[YTD Revenue],
+                ,
+                DESC,
+                DENSE
+            )
+    )
+VAR RankedWithBands =
+    ADDCOLUMNS (
+        RankedClients,
+        "Rank Band",
+            VAR r = [__Rank]
+            VAR BandStart = INT ( ( r - 1 ) / 25 ) * 25 + 1
+            VAR BandEnd   = BandStart + 24
+            RETURN
+                FORMAT ( BandStart, "0" ) & "-" & FORMAT ( BandEnd, "0" )
+    )
+RETURN
+    SELECTCOLUMNS (
+        RankedWithBands,
+        "Client Name", 'Top 250 Clients'[Client Name],
+        "YTD Revenue", 'Top 250 Clients'[YTD Revenue],
+        "Rank Band", [Rank Band]
+    )
