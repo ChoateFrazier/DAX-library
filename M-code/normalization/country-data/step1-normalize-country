@@ -1,0 +1,13 @@
+(t as nullable text) as nullable text =>
+let
+    x0 = if t = null then null else Text.Clean(Text.Trim(t)),
+    x1 = if x0 = null then null else Text.Upper(x0),
+    // Remove accents/diacritics (é -> e, ñ -> n, ü -> u, etc.)
+    x2 = if x1 = null then null else Text.RemoveDiacritics(x1),
+    // Remove common punctuation
+    x3 = if x2 = null then null else Text.Remove(x2, {".", ",", ";", ":", "'", """", "(", ")", "[", "]", "{", "}", "/", "\"}),
+    // Normalize connectors/spacing
+    x4 = if x3 = null then null else Text.Replace(Text.Replace(Text.Replace(x3, "&", " AND "), "-", " "), "  ", " "),
+    x5 = if x4 = null then null else Text.Trim(Text.Combine(List.Select(Text.Split(x4, " "), each _ <> ""), " "))
+in
+    x5
