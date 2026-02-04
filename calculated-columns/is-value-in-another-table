@@ -1,0 +1,5 @@
+IF (
+    'Table2'[Column Name2] IN VALUES ( 'Table1'[Column Name1] ),
+    "Yes",
+    "No"
+)
