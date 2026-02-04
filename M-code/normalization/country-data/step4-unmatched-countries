@@ -1,0 +1,7 @@
+let
+    Source = Contacts,  // reference the transformed query
+    Unmatched = Table.SelectRows(Source, each [Country] <> null and [Country_Standard] = null),
+    DistinctList = Table.Distinct(Table.SelectColumns(Unmatched, {"Country"})),
+    Sorted = Table.Sort(DistinctList, {{"Country", Order.Ascending}})
+in
+    Sorted
