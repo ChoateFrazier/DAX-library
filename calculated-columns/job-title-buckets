@@ -1,0 +1,165 @@
+SWITCH (
+    TRUE(),
+
+    /* --------------------------
+       Senior Leadership
+       -------------------------- */
+    SEARCH("CEO", [Job Title],, 0) > 0 ||
+    SEARCH("PDG", [Job Title],, 0) > 0 ||                                   -- FR: Président-directeur général
+    CONTAINSSTRINGEXACT([Job Title], "COO") ||
+    CONTAINSSTRINGEXACT([Job Title], "CLO") ||
+    CONTAINSSTRINGEXACT([Job Title], "General Counsel") ||
+    CONTAINSSTRINGEXACT([Job Title], "Secretary General") ||
+    SEARCH("CFO", [Job Title],, 0) > 0 ||
+    SEARCH("Chief", [Job Title],, 0) > 0 ||
+    SEARCH("Chef", [Job Title],, 0) > 0 ||
+    SEARCH("VP", [Job Title],, 0) > 0 ||
+    SEARCH("Président", [Job Title],, 0) > 0 ||
+    SEARCH("Présidente", [Job Title],, 0) > 0 ||
+    SEARCH("Executive Director", [Job Title],, 0) > 0 ||
+    SEARCH("Chairman", [Job Title],, 0) > 0 ||
+    SEARCH("Directeur général", [Job Title],, 0) > 0 ||
+    SEARCH("Founder", [Job Title],, 0) > 0 ||
+    SEARCH("Fondateur", [Job Title],, 0) > 0 ||
+    SEARCH("Owner", [Job Title],, 0) > 0 ||
+    SEARCH("Propriétaire", [Job Title],, 0) > 0 ||
+    SEARCH("President", [Job Title],, 0) > 0 ||
+
+    /* Spanish equivalents */
+    SEARCH("Director general", [Job Title],, 0) > 0 ||
+    SEARCH("Directora general", [Job Title],, 0) > 0 ||
+    SEARCH("Consejero delegado", [Job Title],, 0) > 0 ||                    -- often used like CEO/Managing Director
+    SEARCH("Presidenta", [Job Title],, 0) > 0 ||
+    SEARCH("Presidente", [Job Title],, 0) > 0 ||
+    SEARCH("Vicepresidente", [Job Title],, 0) > 0 ||
+    SEARCH("Vicepresidenta", [Job Title],, 0) > 0 ||
+    SEARCH("Director ejecutivo", [Job Title],, 0) > 0 ||
+    SEARCH("Directora ejecutiva", [Job Title],, 0) > 0 ||
+    SEARCH("Fundador", [Job Title],, 0) > 0 ||
+    SEARCH("Fundadora", [Job Title],, 0) > 0 ||
+    SEARCH("Propietario", [Job Title],, 0) > 0 ||
+    SEARCH("Propietaria", [Job Title],, 0) > 0 ||
+    SEARCH("Dueño", [Job Title],, 0) > 0 ||
+    SEARCH("Dueña", [Job Title],, 0) > 0 ||
+
+    /* French equivalents (additional) */
+    SEARCH("Directrice générale", [Job Title],, 0) > 0 ||
+    SEARCH("Président-directeur général", [Job Title],, 0) > 0 ||
+
+    /* German equivalents */
+    SEARCH("Geschäftsführer", [Job Title],, 0) > 0 ||
+    SEARCH("Geschäftsführerin", [Job Title],, 0) > 0 ||
+    SEARCH("Vorstand", [Job Title],, 0) > 0 ||                               -- exec board context
+    SEARCH("Vorstandsvorsitz", [Job Title],, 0) > 0 ||                        -- Vorstandsvorsitzender/in
+    SEARCH("Vorsitzender", [Job Title],, 0) > 0 ||                            -- chair (male)
+    SEARCH("Vorsitzende", [Job Title],, 0) > 0 ||                             -- chair (female)
+    SEARCH("Präsident", [Job Title],, 0) > 0 ||
+    SEARCH("Präsidentin", [Job Title],, 0) > 0 ||
+    SEARCH("Gründer", [Job Title],, 0) > 0 ||
+    SEARCH("Gründerin", [Job Title],, 0) > 0 ||
+    SEARCH("Inhaber", [Job Title],, 0) > 0 ||
+    SEARCH("Inhaberin", [Job Title],, 0) > 0,
+        "Senior Leadership",
+
+
+    /* --------------------------
+       Business Professionals
+       -------------------------- */
+    SEARCH("Manager", [Job Title],, 0) > 0 ||
+    SEARCH("Advisor", [Job Title],, 0) > 0 ||
+    SEARCH("Directrice", [Job Title],, 0) > 0 ||
+    SEARCH("Directeur", [Job Title],, 0) > 0 ||
+    SEARCH("Conseillère", [Job Title],, 0) > 0 ||
+    SEARCH("Conseillere", [Job Title],, 0) > 0 ||
+    SEARCH("Conseiller", [Job Title],, 0) > 0 ||
+    SEARCH("Chargé de", [Job Title],, 0) > 0 ||
+    SEARCH("Consultante", [Job Title],, 0) > 0 ||
+    SEARCH("Consultant", [Job Title],, 0) > 0 ||
+    SEARCH("Director", [Job Title],, 0) > 0 ||
+
+    /* Spanish equivalents */
+    SEARCH("Gerente", [Job Title],, 0) > 0 ||
+    SEARCH("Responsable", [Job Title],, 0) > 0 ||
+    SEARCH("Jefe de", [Job Title],, 0) > 0 ||
+    SEARCH("Jefa de", [Job Title],, 0) > 0 ||
+    SEARCH("Asesor", [Job Title],, 0) > 0 ||
+    SEARCH("Asesora", [Job Title],, 0) > 0 ||
+    SEARCH("Consultor", [Job Title],, 0) > 0 ||
+    SEARCH("Consultora", [Job Title],, 0) > 0 ||
+    SEARCH("Director", [Job Title],, 0) > 0 ||                               -- Spanish “Director(a)”
+    SEARCH("Directora", [Job Title],, 0) > 0 ||
+
+    /* French equivalents (additional) */
+    SEARCH("Gestionnaire", [Job Title],, 0) > 0 ||                            -- manager (FR-CA common)
+    SEARCH("Responsable", [Job Title],, 0) > 0 ||
+
+    /* German equivalents */
+    SEARCH("Leiter", [Job Title],, 0) > 0 ||
+    SEARCH("Leiterin", [Job Title],, 0) > 0 ||
+    SEARCH("Berater", [Job Title],, 0) > 0 ||
+    SEARCH("Beraterin", [Job Title],, 0) > 0 ||
+    SEARCH("Beratung", [Job Title],, 0) > 0 ||                                -- advisory/consulting wording
+    SEARCH("Consultant", [Job Title],, 0) > 0 ||
+    SEARCH("Direktor", [Job Title],, 0) > 0 ||
+    SEARCH("Direktorin", [Job Title],, 0) > 0,
+        "Business Professionals",
+
+
+    /* --------------------------
+       Legal Counsel
+       -------------------------- */
+    CONTAINSSTRINGEXACT([Job Title], "Partner") ||
+    CONTAINSSTRINGEXACT([Job Title], "Avocat") ||
+    CONTAINSSTRINGEXACT([Job Title], "Avocate") ||
+    CONTAINSSTRINGEXACT([Job Title], "avocate") ||
+    CONTAINSSTRINGEXACT([Job Title], "Abogado") ||
+    CONTAINSSTRINGEXACT([Job Title], "Of Counsel") ||
+    CONTAINSSTRINGEXACT([Job Title], "Counsel") ||
+    CONTAINSSTRINGEXACT([Job Title], "Senior Counsel") ||
+    CONTAINSSTRINGEXACT([Job Title], "Attorney") ||
+    CONTAINSSTRINGEXACT([Job Title], "Associé") ||
+    CONTAINSSTRINGEXACT([Job Title], "Associée") ||
+    CONTAINSSTRINGEXACT([Job Title], "Barrister") ||
+    CONTAINSSTRINGEXACT([Job Title], "Solicitor") ||
+    CONTAINSSTRINGEXACT([Job Title], "Lawyer") ||
+    CONTAINSSTRINGEXACT([Job Title], "Juriste") ||
+    CONTAINSSTRINGEXACT([Job Title], "Conseiller juridique") ||
+    CONTAINSSTRINGEXACT([Job Title], "Associate") ||
+
+    /* Spanish equivalents */
+    CONTAINSSTRINGEXACT([Job Title], "Abogada") ||
+    CONTAINSSTRINGEXACT([Job Title], "Letrado") ||
+    CONTAINSSTRINGEXACT([Job Title], "Letrada") ||
+    CONTAINSSTRINGEXACT([Job Title], "Asesor jurídico") ||
+    CONTAINSSTRINGEXACT([Job Title], "Asesora jurídica") ||
+    CONTAINSSTRINGEXACT([Job Title], "Consejero jurídico") ||
+    CONTAINSSTRINGEXACT([Job Title], "Consejera jurídica") ||
+
+    /* French equivalents (additional) */
+    CONTAINSSTRINGEXACT([Job Title], "Conseil juridique") ||
+
+    /* German equivalents */
+    CONTAINSSTRINGEXACT([Job Title], "Rechtsanwalt") ||
+    CONTAINSSTRINGEXACT([Job Title], "Rechtsanwältin") ||
+    CONTAINSSTRINGEXACT([Job Title], "Anwalt") ||
+    CONTAINSSTRINGEXACT([Job Title], "Anwältin") ||
+    CONTAINSSTRINGEXACT([Job Title], "Syndikus") ||                           -- in-house counsel wording
+    CONTAINSSTRINGEXACT([Job Title], "Syndikusanwalt") ||
+    CONTAINSSTRINGEXACT([Job Title], "Jurist") ||
+    CONTAINSSTRINGEXACT([Job Title], "Juristin") ||
+    CONTAINSSTRINGEXACT([Job Title], "Rechtsberater") ||
+    CONTAINSSTRINGEXACT([Job Title], "Rechtsberaterin") ||
+    CONTAINSSTRINGEXACT([Job Title], "Rechtsabteilung") ||                    -- legal department titles
+    CONTAINSSTRINGEXACT([Job Title], "Justiziar") ||
+    CONTAINSSTRINGEXACT([Job Title], "Justiziarin"),
+        "Legal Counsel",
+
+
+    /* --------------------------
+       No Job Title
+       -------------------------- */
+    SEARCH("NULL", [Job Title],, 0) > 0,
+        "No Job Title",
+
+    "Other"
+)
