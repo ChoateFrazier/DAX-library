@@ -24,19 +24,16 @@ Many of these entries assume:
 
 ## Naming Conventions
 
-Measures
-Uses descriptive, business-friendly names:
+Measures | Uses descriptive, business-friendly names:
    - Total Sales
    - Sales YTD
    - Sales YoY %
 
-Calculated Columns
-Descriptive and singular:
+Calculated Columns | Descriptive and singular:
    - Is Client
    - Industry
 
-Calculated Tables
-Identify purpose:
+Calculated Tables | Identify purpose:
   - Rank Bands
   - Date
 
