@@ -1,17 +1,35 @@
-AES = 
-(0.1 * 'Engagement Measures'[AESannouncement]) + 
-(1.0 * 'Engagement Measures'[AESattendedevent]) + 
-(1.5 * 'Engagement Measures'[AESdownloadedcontent]) + 
-(0.1 * 'Engagement Measures'[AESholidaycard]) + 
-(0.1 * 'Engagement Measures'[AESinvitation]) + 
-(0.1 * 'Engagement Measures'[AESmarketingmailing]) + 
-(0.1 * 'Engagement Measures'[AESnewsletter]) + 
-(0.05 * 'Engagement Measures'[AESopened]) + 
-(0.5 * 'Engagement Measures'[AESoptin]) - 
-(2 * 'Engagement Measures'[AESoptout]) + 
-(0.5 * 'Engagement Measures'[AESrsvp]) + 
-(2.0 * 'Engagement Measures'[AESopportunity]) + 
-(2.0 * 'Engagement Measures'[AESclientpitch]) + 
-(2.0 * 'Engagement Measures'[AESproposal]) + 
-(2.0 * 'Engagement Measures'[AESpropsectpitch]) + 
+/*
+================================================================================
+Name:        Aggregate Engagement Score
+Type:        Measure
+Category:    Ranking
+Purpose:     Sums the various weighted values for marketing activities you are tracking in separate measures. If you are also monitoring negative activity (opt outs, RSVP no, etc.), subtract those values rather than adding them to the total.
+Inputs:      <Table>[Column1]...[ColumnN], Weighted Value for Each Activity
+Output:      Number
+Assumptions: - Star schema model
+             - Date table marked as Date
+             - Relationships exist as expected
+             - Individual marketing activities have measures created to total them separately
+Example Use: AES = (0.1 * 'Engagement Measures'[AESannouncement]) + (1.0 * 'Engagement Measures'[AESattendedevent]) + (1.5 * 'Engagement Measures'[AESdownloadedcontent]) + 
+(0.1 * 'Engagement Measures'[AESholidaycard]) + (0.1 * 'Engagement Measures'[AESinvitation]) + (0.1 * 'Engagement Measures'[AESmarketingmailing]) + 
+(0.1 * 'Engagement Measures'[AESnewsletter]) + (0.05 * 'Engagement Measures'[AESopened]) + (0.5 * 'Engagement Measures'[AESoptin]) - 
+(2 * 'Engagement Measures'[AESoptout]) + (0.5 * 'Engagement Measures'[AESrsvp]) + (2.0 * 'Engagement Measures'[AESopportunity]) + 
+(2.0 * 'Engagement Measures'[AESclientpitch]) + (2.0 * 'Engagement Measures'[AESproposal]) + (2.0 * 'Engagement Measures'[AESpropsectpitch]) + 
 (2.0 * 'Engagement Measures'[AESrfp])
+================================================================================
+*/
+
+AES = 
+(<weight1> * 'table1'[activity1]) + 
+(<weight2> * 'table1'[activity2]) + 
+(<weight3> * 'table1'[activity3]) + 
+(<weight4> * 'table1'[activity4]) + 
+(<weight5> * 'table1'[activity5]) + 
+(<weight6> * 'table1'[activity6]) + 
+(<weight7> * 'table1'[activity7]) + 
+(<weight8> * 'table1'[activity8]) + 
+(<weight8> * 'table1'[activity9]) - 
+(<weight10> * 'table1'[activity10]) + 
+...
+(<weightN> * 'table1'[activityN]) + 
+
