@@ -1,0 +1,16 @@
+/*
+================================================================================
+Name:        Count Specific Value
+Type:        Measure
+Category:    Segmentation
+Purpose:     Counts the number of times a specific text string occurs in a column.
+Inputs:      <Table>[Column]
+Output:      Number (total occurences of text string in target column)
+Assumptions: - Star schema model
+             - Date table marked as Date
+             - Relationships exist as expected
+Example Use: CALCULATE(COUNTROWS('Mktg Activities'), 'Mktg Activities'[Activity Type] = "Attended Event")
+================================================================================
+*/
+
+CALCULATE(COUNTROWS('table1'), 'table1'[column1] = "TEXT STRING")
