@@ -96,7 +96,35 @@ Examples:
 - Avoid deeply nested expressions when possible
 - Prefer explicit formatting over clever shortcuts
 
-## 6. Feedback and Contributions
+---
+
+## 6. Metadata Format for New Code Files
+
+
+---
+
+## 📄 Template header for individual DAX files
+
+Below is a header you can paste at the top of every DAX file **(except `.ignore` or `.gitkeep`)** to keep things consistent:
+
+/*
+================================================================================
+Name:        <Descriptive Name>
+Type:        <Measure | Calculated Column | Calculated Table>
+Category:    <Time Intelligence | Ranking | Segmentation | Other>
+Purpose:     <Explain what this code does, business context>
+Inputs:      <Table>[Column], <Table2>[Column2], etc.
+Output:      <What this returns or adds to the model>
+Assumptions: - Star schema model
+             - Date table marked as Date
+             - Relationships exist as expected
+Example Use: <Optional example or scenario>
+================================================================================
+*/
+
+---
+
+## 7. Feedback and Contributions
 
 - Find Choate Frazier on LinkedIn; we welcome any and all feedback
 - Reach out to the Choate Frazier team if you have additional code you would like added to this repository
