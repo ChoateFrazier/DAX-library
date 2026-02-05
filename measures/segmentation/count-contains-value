@@ -1,0 +1,16 @@
+/*
+================================================================================
+Name:        Count Contains Value
+Type:        Measure
+Category:    Segmentation
+Purpose:     Count the number of times a text string appears in a column, even if that string is within a larger phrase.
+Inputs:      <Table>[Column]
+Output:      Total number of appearances of the defined text string throughout a particular column.
+Assumptions: - Star schema model
+             - Date table marked as Date
+             - Relationships exist as expected
+Example Use: Total Managers = CALCULATE(COUNTROWS('Personnel'), FILTER('Personnel', CONTAINSSTRING('Personnel'[Job Title], "Manager") = TRUE))
+================================================================================
+*/
+
+Count Contains Value = CALCULATE(COUNTROWS('table1'), FILTER('table1', CONTAINSSTRING('table1'[column1], "TEXT STRING") = TRUE))
